@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
 import { goals, goalCompletions } from '../db/schema'
 import { db } from '../db'
 import { and, lte, sql, count, gte, eq } from 'drizzle-orm'
