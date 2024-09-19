@@ -2,7 +2,7 @@ import { z } from 'zod'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import { createGoalCompletion } from '../../functions/create-goal-completion'
 
-export const createCompletionRoute: FastifyPluginAsyncZod = async app => {
+export const createGoalCompletionRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/completions',
     {
@@ -15,9 +15,11 @@ export const createCompletionRoute: FastifyPluginAsyncZod = async app => {
     async request => {
       const { goalId } = request.body
 
-      await createGoalCompletion({
+      const { goalCompletion } = await createGoalCompletion({
         goalId,
       })
+
+      return { goalCompletionId: goalCompletion.id }
     }
   )
 }
